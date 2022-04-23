@@ -1,25 +1,37 @@
 <!DOCTYPE html>
 <html>
+<script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script>
+  
+  <script>
+  function loadApp(appPath, appFile, appTitle) {
+	$("#txtTitle").text("Loading...")
+	$("#divApp").load(appPath + encodeURIComponent(appFile), function() {
+			  $("#txtTitle").text(appTitle);
+			});
+	document.title = appTitle;
+	}
+	
+  </script>
+
+  
 <body>
 
-<?php
-echo "Guess the text";
-?> 
+<button id="myBtn">Load Kana App</button>
 
-<p id="txtJapan" style="font-size:50px;"></p>
+<h2 id="txtTitle" style="color:#ff9900;">Kudori App</h2>
+<div id="divApp">Web App will be loaded here</div> 
+
 
 <script>
-const kana = 
-{ a: "あア", i: "いイ", u: "うウ", e: "えエ", o: "おオ",
-  ka:"かカ", ki:"きキ", ku:"くク", ke:"けケ", ko: "こコ",
-  sa:"さサ", si:"しシ", su:"すス", se:"せセ", so: "そソ",
-  ta:"たタ", ti:"ちチ", tu:"つツ", te:"てテ", to: "とト",
-  na:"なナ", ni:"にニ", nu:"ぬヌ", ne:"ねネ", no: "のノ",
-  ha:"はハ", hi:"ひヒ", hu:"ふフ", he:"へヘ", ho: "ほホ"};
+document.getElementById("myBtn").addEventListener("click", displayApp);
 
-document.getElementById("txtJapan").innerHTML = kana[Object.keys(kana)[Math.floor(Math.random() * Object.keys(kana).length)]];
+function displayApp() {
+  	loadApp('/','kana.php','Kana Practice');
+}
 </script>
-
 
 </body>
 </html>
